@@ -135,7 +135,7 @@ export default function App() {
             onNext={setSelectedLesson}
           />
         </Suspense>
-        <Footer />
+        <Footer onNavigate={navigate} />
         <AICoachPanel currentView={currentView} selectedGrade={selectedGrade} progress={progress} onNavigate={navigate} />
         <ToastStack messages={toasts} />
       </>
@@ -188,7 +188,7 @@ export default function App() {
         </motion.div>
       </AnimatePresence>
 
-      <Footer />
+      <Footer onNavigate={navigate} />
       <AICoachPanel currentView={currentView} selectedGrade={selectedGrade} progress={progress} onNavigate={navigate} />
       <ToastStack messages={toasts} />
 

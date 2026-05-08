@@ -1,6 +1,17 @@
 import { Award, Beaker, BookOpen, Brain, FlaskConical, Gamepad2, GraduationCap, Heart, Shield, Sparkles } from "lucide-react";
+import type { AppView } from "../types";
 
-export default function Footer() {
+interface FooterProps {
+  onNavigate?: (view: AppView) => void;
+}
+
+export default function Footer({ onNavigate }: FooterProps) {
+  const handleNav = (view: AppView) => {
+    if (onNavigate) {
+      onNavigate(view);
+    }
+  };
+
   return (
     <footer className="border-t border-slate-200/60 bg-white dark:border-white/10 dark:bg-ink/80">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -30,30 +41,36 @@ export default function Footer() {
               </span>
             </div>
           </div>
-
-          {/* Quick Links */}
+          {/* Quick Links - Interactive */}
           <div>
             <h3 className="text-sm font-extrabold text-ink dark:text-white">أقسام المنصة</h3>
-            <ul className="mt-3 space-y-2.5">
-              <li className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                <BookOpen className="h-3.5 w-3.5 text-ocean" />
-                الدروس التفاعلية
+            <ul className="mt-3 space-y-2">
+              <li>
+                <button type="button" onClick={() => handleNav("learn")} className="group flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-slate-500 transition-all hover:bg-ocean/5 hover:text-ocean dark:text-slate-400 dark:hover:bg-aqua/10 dark:hover:text-aqua">
+                  <BookOpen className="h-3.5 w-3.5 text-ocean transition-transform group-hover:scale-110" />
+                  <span>الدروس التفاعلية</span>
+                </button>
               </li>
-              <li className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                <FlaskConical className="h-3.5 w-3.5 text-emerald-500" />
-                المختبر الافتراضي
+              <li>
+                <button type="button" onClick={() => handleNav("lab")} className="group flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-slate-500 transition-all hover:bg-emerald-50 hover:text-emerald-600 dark:text-slate-400 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400">
+                  <FlaskConical className="h-3.5 w-3.5 text-emerald-500 transition-transform group-hover:scale-110" />
+                  <span>المختبر الافتراضي</span>
+                </button>
               </li>
-              <li className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                <Brain className="h-3.5 w-3.5 text-violet" />
-                المساعد الذكي
+              <li>
+                <button type="button" onClick={() => handleNav("assistant")} className="group flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-slate-500 transition-all hover:bg-violet/5 hover:text-violet dark:text-slate-400 dark:hover:bg-violet/10 dark:hover:text-violet">
+                  <Brain className="h-3.5 w-3.5 text-violet transition-transform group-hover:scale-110" />
+                  <span>المساعد الذكي</span>
+                </button>
               </li>
-              <li className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                <Gamepad2 className="h-3.5 w-3.5 text-rose-500" />
-                الألعاب التعليمية
+              <li>
+                <button type="button" onClick={() => handleNav("games")} className="group flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-slate-500 transition-all hover:bg-rose-50 hover:text-rose-600 dark:text-slate-400 dark:hover:bg-rose-500/10 dark:hover:text-rose-400">
+                  <Gamepad2 className="h-3.5 w-3.5 text-rose-500 transition-transform group-hover:scale-110" />
+                  <span>الألعاب التعليمية</span>
+                </button>
               </li>
             </ul>
           </div>
-
           {/* Info */}
           <div>
             <h3 className="text-sm font-extrabold text-ink dark:text-white">معلومات</h3>
@@ -77,7 +94,6 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-
         {/* Bottom Bar */}
         <div className="mt-8 flex flex-col items-center gap-3 border-t border-slate-200/60 pt-6 dark:border-white/10 sm:flex-row sm:justify-between">
           <p className="text-xs font-medium text-slate-400 dark:text-slate-500">

@@ -173,6 +173,7 @@ function SpeedGame() {
 
 /* ===== Match Game ===== */
 function MatchGame() {
+  const shuffledDefinitions = useMemo(() => [...matchPairs].sort(() => Math.random() - 0.5), []);
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null);
   const [matched, setMatched] = useState<string[]>([]);
   const [feedback, setFeedback] = useState("اختاري مصطلحًا ثم التعريف المطابق.");
@@ -234,7 +235,7 @@ function MatchGame() {
             </div>
             <div className="grid gap-2">
               <p className="text-xs font-bold text-slate-400 mb-1">التعريفات</p>
-              {matchPairs.map((pair) => (
+              {shuffledDefinitions.map((pair) => (
                 <button
                   key={pair.definition}
                   type="button"
