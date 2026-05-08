@@ -5,12 +5,21 @@
 :root {
   color-scheme: light;
   font-family: "IBM Plex Sans Arabic", Tajawal, Cairo, sans-serif;
-  background: #f4f7fb;
+  background: #f8fafc;
   color: #122238;
+  --gradient-primary: linear-gradient(135deg, #0F5F7A 0%, #28B7B6 100%);
+  --gradient-hero: linear-gradient(135deg, #0b1524 0%, #0F5F7A 40%, #28B7B6 100%);
+  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,1) 100%);
+  --shadow-card: 0 4px 24px rgba(15, 40, 70, 0.08);
+  --shadow-hover: 0 12px 40px rgba(15, 40, 70, 0.15);
+  --shadow-glow: 0 0 30px rgba(40, 183, 182, 0.2);
 }
 
 .dark {
   color-scheme: dark;
+  --gradient-card: linear-gradient(145deg, rgba(18,34,56,0.8) 0%, rgba(11,21,36,0.9) 100%);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 12px 40px rgba(40, 183, 182, 0.15);
 }
 
 * {
@@ -45,64 +54,136 @@ select:focus-visible {
   outline-offset: 3px;
 }
 
+/* Professional Grid Background */
 .science-grid {
   background-image:
-    linear-gradient(rgba(15, 95, 122, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 95, 122, 0.08) 1px, transparent 1px);
-  background-size: 32px 32px;
+    radial-gradient(circle at 20% 50%, rgba(40, 183, 182, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(118, 97, 232, 0.04) 0%, transparent 40%),
+    linear-gradient(rgba(15, 95, 122, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 95, 122, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
 }
 
+/* Glass Morphism Panel */
 .soft-panel {
-  border: 1px solid rgba(111, 127, 153, 0.18);
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 18px 50px rgba(15, 40, 70, 0.1);
-  backdrop-filter: blur(14px);
+  border: 1px solid rgba(111, 127, 153, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
 }
 
 .dark .soft-panel {
-  border-color: rgba(180, 198, 225, 0.18);
-  background: rgba(18, 34, 56, 0.82);
+  border-color: rgba(180, 198, 225, 0.1);
+  background: rgba(18, 34, 56, 0.85);
 }
 
+/* Premium Hero Section */
 .hero-visual {
   position: relative;
-  min-height: 360px;
+  min-height: 380px;
   overflow: hidden;
-  border: 1px solid rgba(40, 183, 182, 0.2);
-  background:
-    radial-gradient(circle at 75% 20%, rgba(40, 183, 182, 0.14), transparent 28%),
-    linear-gradient(135deg, #0f5f7a 0%, #122238 52%, #352f69 100%);
+  border: 1px solid rgba(40, 183, 182, 0.15);
+  border-radius: 20px;
+  background: var(--gradient-hero);
+  box-shadow: var(--shadow-glow);
 }
 
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(40, 183, 182, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(118, 97, 232, 0.1) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* Animated Orbit */
 .atom-orbit {
   position: absolute;
   inset: 18%;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   border-radius: 50%;
   transform: rotate(var(--rotate));
+  animation: orbit-spin 12s linear infinite;
 }
 
+.atom-orbit:nth-child(2) {
+  animation-duration: 16s;
+  animation-direction: reverse;
+}
+
+.atom-orbit:nth-child(3) {
+  animation-duration: 20s;
+}
+
+@keyframes orbit-spin {
+  from { transform: rotate(var(--rotate)); }
+  to { transform: rotate(calc(var(--rotate) + 360deg)); }
+}
+
+/* Pulse Animation */
 .pulse-dot {
   animation: pulse-dot 2.4s ease-in-out infinite;
 }
 
 @keyframes pulse-dot {
-  0%,
-  100% {
+  0%, 100% {
     transform: scale(1);
     opacity: 0.88;
   }
   50% {
-    transform: scale(1.16);
+    transform: scale(1.2);
     opacity: 1;
   }
 }
 
+/* Premium Card Hover Effect */
+.card-premium {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated Progress Bar */
+.progress-bar-animated {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.progress-bar-animated::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Cart Track */
 .cart-track {
   background-image: repeating-linear-gradient(
     90deg,
-    rgba(18, 34, 56, 0.18),
-    rgba(18, 34, 56, 0.18) 8px,
+    rgba(18, 34, 56, 0.12),
+    rgba(18, 34, 56, 0.12) 8px,
     transparent 8px,
     transparent 24px
   );
@@ -111,11 +192,142 @@ select:focus-visible {
 .dark .cart-track {
   background-image: repeating-linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.24),
-    rgba(255, 255, 255, 0.24) 8px,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.18) 8px,
     transparent 8px,
     transparent 24px
   );
+}
+
+/* Chat Bubble Animation */
+.chat-bubble {
+  animation: bubble-in 0.3s ease-out;
+}
+
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Typing Indicator */
+.typing-indicator span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #28B7B6;
+  animation: typing-bounce 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) { animation-delay: 0s; }
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* Quiz Timer Animation */
+.timer-ring {
+  animation: timer-countdown linear forwards;
+}
+
+@keyframes timer-countdown {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 283; }
+}
+
+/* Badge Shine Effect */
+.badge-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+  animation: badge-shine 3s infinite;
+}
+
+@keyframes badge-shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* Floating Action Button */
+.fab-pulse {
+  animation: fab-pulse 2s ease-in-out infinite;
+}
+
+@keyframes fab-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(40, 183, 182, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(40, 183, 182, 0); }
+}
+
+/* Smooth Page Transitions */
+.page-enter {
+  animation: page-enter 0.4s ease-out;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Confetti Effect for Quiz Completion */
+.confetti-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  animation: confetti-fall 3s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(300px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 95, 122, 0.2);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 95, 122, 0.4);
 }
 
 @media (prefers-reduced-motion: reduce) {
