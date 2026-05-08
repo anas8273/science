@@ -32,7 +32,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             <Star className="h-4 w-4 text-amberSoft" aria-hidden="true" />
             منصة تعليمية ذكية للصف الأول والثالث متوسط
           </div>
-          <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.3] text-ink dark:text-white md:text-5xl lg:text-[3.2rem]">
+          <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.4] text-ink dark:text-white sm:text-4xl md:text-[2.8rem] lg:text-[3rem]">
             تعلّمي العلوم بطريقة{" "}
             <span className="gradient-text">ذكية وتفاعلية</span>
           </h1>

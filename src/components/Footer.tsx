@@ -1,4 +1,4 @@
-import { Beaker, BookOpen, Brain, ExternalLink, FlaskConical, Gamepad2, Heart, Shield } from "lucide-react";
+import { Award, Beaker, BookOpen, Brain, FlaskConical, Gamepad2, GraduationCap, Heart, Shield, Sparkles } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -58,14 +58,21 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-extrabold text-ink dark:text-white">معلومات</h3>
             <ul className="mt-3 space-y-2.5">
-              <li className="text-sm text-slate-500 dark:text-slate-400">المنهج: علوم المرحلة المتوسطة</li>
-              <li className="text-sm text-slate-500 dark:text-slate-400">الصفوف: الأول والثالث متوسط</li>
-              <li className="text-sm text-slate-500 dark:text-slate-400">المصادر: مناهج وزارة التعليم</li>
               <li className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                <ExternalLink className="h-3.5 w-3.5" />
-                <a href="https://github.com/anas8273/science" target="_blank" rel="noopener noreferrer" className="hover:text-ocean transition-colors">
-                  المستودع على GitHub
-                </a>
+                <GraduationCap className="h-3.5 w-3.5 text-ocean" />
+                المنهج: علوم المرحلة المتوسطة
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                <Award className="h-3.5 w-3.5 text-amber-500" />
+                الصفوف: الأول والثالث متوسط
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                <Sparkles className="h-3.5 w-3.5 text-violet" />
+                المصادر: مناهج وزارة التعليم
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                <Shield className="h-3.5 w-3.5 text-emerald-500" />
+                محتوى آمن ومناسب للطالبات
               </li>
             </ul>
           </div>
