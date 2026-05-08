@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import { handleTutorRequest } from "./server/aiTutor.mjs";
 
 export default defineConfig({
+  base: '/science/',
   server: {
     allowedHosts: true,
   },
